@@ -19,12 +19,12 @@ This can be done by entering in
 pip install -r requirements.txt
 ```
 
-into powershell or terminal
+into PowerShell or terminal
 
-Afterwards, move into the andrew_li_django_website directory and enter
+Afterwards, to move into the project enter
 
 ```powershell
-python manage.py runserver --settings=andrew_site.settings.dev
+open.ps1 # into the powershell
 ```
 
 if you are on Windows
@@ -32,12 +32,10 @@ if you are on Windows
 OR
 
 ```shell
-python3 manage.py runserver --settings=andrew_site.settings.dev
+start.sh # in terminal
 ```
 
 if you are on Mac or Linux
-
-If it is a production environment, use **prod** instead of **dev** in the end condition
 
 
 
