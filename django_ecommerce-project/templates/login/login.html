@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Login {% endblock title %}
+
+{% block style %}
+.main {
+    margin-top: 20vh;
+    margin-bottom: 20vh;
+}
+h2 {
+    padding-top: 50px;
+    font-size: 3em;
+}
+.container {
+    max-width: 960px;
+    background-color: #f7f7f7;
+    border-radius: 30px;
+    border: 1px solid #dadce0;
+}
+.bottom {
+    height: 50px;
+}
+.asteriskField {
+    display: none;
+}
+.requiredField {
+    font-weight: bold;
+}
+.register {
+    padding-top: 50px;
+}
+.register a {
+    text-decoration: none;
+    transition: .2s;
+    -moz-transition: .2s;
+    -webkit-transition: .2s;
+    -o-transition: .2s
+}
+.register a:hover {
+    transition: .2s;
+    -moz-transition: .2s;
+    -webkit-transition: .2s;
+    -o-transition: .2s
+}
+{% endblock style %}
+
+{% block active %} active {% endblock active %}
+
+{% block text %}
+
+{% load crispy_forms_tags %}
+
+<div class="container shadow-lg">
+    <h2>Login<br></h2>
+    <form method="POST" style="padding-left: 80px;padding-right: 80px;">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success">Login</button>
+    </form>
+    <div class="bottom"></div>
+</div>
+<div><p class="register">Did you forget your password? Click this <a href="{% url 'password_reset' %}">link</a> (Not working due to no email server setup)</p></div>
+<div><p class="register">Not a member? <a href="{% url 'register' %}">Register</a> for free now.</p></div>
+{% endblock text %}

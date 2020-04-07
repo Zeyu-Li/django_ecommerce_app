@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Shop {% endblock %}
+{% comment %} TODO: https://www.youtube.com/watch?v=Xjty8q524Jo (14:00) {% endcomment %}
+{% block shopping %}
+{% endblock shopping %}
+
+{% block style %}
+#login {
+
+color: cornflowerblue;
+
+}
+
+#login:hover {
+
+color: rgb(10, 79, 206);
+transition: 1s;
+
+}
+h1 {
+margin-top: 2vh;
+}
+.main {
+margin-top: 5vh;
+margin-bottom: 5vh;
+}
+.swiper-pagination-bullet {
+transition: .3s;
+}
+.swiper-pagination-bullet:hover {
+transition: .3s;
+background-color: rgb(137, 182, 255);
+}
+.alert {
+margin-bottom: 0px;
+display:none;
+}
+.show {
+top:56px;
+}
+.grey-text, .dark-grey-text, .grey-text:hover, .dark-grey-text:hover {
+text-decoration: none;
+transition: .2s;
+-moz-transition: .2s;
+-webkit-transition: .2s;
+-o-transition: .2s;
+}
+.grey-text {
+color: #b7b7b7!important;
+}
+.grey-text:hover {
+color: #8e8e8e!important
+}
+.dark-grey-text {
+color: #333232!important
+}
+.dark-grey-text:hover {
+color: #1c1b1b!important
+}
+.mask {
+width: 100%;
+height: 100%;
+transition: .5s ease;
+opacity: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+text-align: center;
+transition: .2s;
+-moz-transition: .2s;
+-webkit-transition: .2s;
+-o-transition: .2s;
+}
+.overlay {
+width: 100%;
+position: relative;
+
+transition: .2s;
+-moz-transition: .2s;
+-webkit-transition: .2s;
+-o-transition: .2s;
+}
+.overlay:hover .card-img-top {
+opacity: 0.3;
+transition: .2s;
+-moz-transition: .2s;
+-webkit-transition: .2s;
+-o-transition: .2s;
+}
+
+.overlay:hover .mask {
+opacity: 1;
+transition: .2s;
+-moz-transition: .2s;
+-webkit-transition: .2s;
+-o-transition: .2s;
+}
+.linker {
+width: 100%;
+height: 100%;
+}
+.grey_hover:hover {
+color: #666666!important
+}
+{% endblock style %}
+
+
+{% block text %}
+<main>
+    <div class="container">
+
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+
+            <!-- Navbar brand -->
+            <span class="navbar-brand">Categories:</span>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">All
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Technology</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Accessories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Transportation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Other</a>
+                    </li>
+                </ul>
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+            <!-- Collapsible content -->
+
+        </nav>
+        <!--/Navbar-->
+
+        <!--Section: Products v.3-->
+        <section class="text-center mb-4">
+
+            <div class="row wow fadeIn">
+
+                {% for item in object_list %}
+
+                <div class="col-lg-3 col-md-6 mb-4">
+
+                    <div class="card">
+                        <div class="view overlay">
+                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg"
+                                class="card-img-top" alt="">
+                            <a href="{{ item.get_absolute_url }}" class="linker">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--Card image-->
+
+                        <!--Card content-->
+                        <div class="card-body text-center">
+                            <!--Category & Title-->
+                            <a href="" class="grey-text">
+                                <h5>{{ item.get_category_display }}</h5>
+                            </a>
+                            <h5>
+                                <strong>
+                                    <a href="{{ item.get_absolute_url }}"
+                                        class="dark-grey-text grey_hover">{{ item.title }}
+                                        <span class="badge badge-{{ item.get_label_display }}">NEW</span>
+                                    </a>
+                                </strong>
+                            </h5>
+
+                            <h4 class="font-weight-bold blue-text">
+                                <strong>$
+                                    {% if item.discounted_price %}
+                                    {{ item.discounted_price }}
+                                    {% else %}
+                                    {{ item.price }}
+                                    {% endif %}
+                                </strong>
+                            </h4>
+
+                        </div>
+                        <!--Card content-->
+
+                    </div>
+                    <!--Card-->
+
+                </div>
+                {% endfor %}
+
+            </div>
+
+        </section>
+        <!--Section: Products v.3-->
+
+        <!--Pagination-->
+        <nav class="d-flex justify-content-center wow fadeIn">
+            <ul class="pagination pg-blue">
+
+                <!--Arrow left-->
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+
+                <li class="page-item active">
+                    <a class="page-link" href="#">1
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">3</a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</main>
+{% endblock text %}
