@@ -23,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'prv2$n!c=ru@+ud41-dnp80%$9u4a0h(f_$eyb=f=^ia9lh82s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# TODO: DEBUG = False
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -31,14 +32,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'login',
+    'shop',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'login',
-    'shop',
+    'captcha',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -127,9 +130,16 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# login url and its redirect
+
 LOGIN_URL = '/login/'
 
 LOGIN_REDIRECT_URL = '/'
 
 # added crispy module for forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# recaptcha keys 
+RECAPTCHA_PUBLIC_KEY = '6LeII6YUAAAAAD3xQqWGY1p6w5AArA4ZR4zv9-Ss'
+
+RECAPTCHA_PRIVATE_KEY = '6LeII6YUAAAAAIlrhWPw1V0e8JeOdgyrbLiYufCf'

@@ -46,7 +46,7 @@
                 </li>
                 {% comment %} <li class="nav-item {% if page == 'shop' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'item_list' %}">Shop </a>
-                </li>
+                </li> {% endcomment %}
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link {% if page == 'cart' %} active {% endif %}" href="#">My Cart </a>
@@ -61,7 +61,7 @@
                 <li class="nav-item {% block active %} {% endblock active %}">
                     <a class="nav-link" href="{% url 'login' %}">Login </a>
                 </li>
-                {% endif %} {% endcomment %}
+                {% endif %}
 
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -104,14 +104,14 @@
 
         <ul class="bottom">
             <li><a href="{% url 'home' %}">Home </a></li>
-            {% comment %} <li><a href="{% url 'item_list' %}">Shop </a></li>
+            {% comment %} <li><a href="{% url 'item_list' %}">Shop </a></li> {% endcomment %}
             {% if user.is_authenticated %}
             <li><a href="#">My Cart</a></li>
             <li><a href="{% url 'profile' %}">My Proile</a></li>
             <li><a href="{% url 'logout' %}">Logout </a></li>
             {% else %}
             <li><a href="{% url 'login' %}">Login </a></li>
-            {% endif %} {% endcomment %}
+            {% endif %}
         </ul>
 
     </div>
