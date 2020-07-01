@@ -24,7 +24,7 @@ into PowerShell or terminal
 Afterwards, to move into the project enter
 
 ```powershell
-open.ps1 # into the powershell
+open.ps1 # in powershell
 ```
 
 if you are on Windows
