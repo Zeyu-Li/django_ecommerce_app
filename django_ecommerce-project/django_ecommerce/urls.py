@@ -19,16 +19,38 @@ from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordResetView, 
     PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView,
 )
+# import both app modules
 from login import views as user_views
 from shop import views as shop_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # home views
     path('', shop_views.home, name='home'),
     path('home/', shop_views.home_redirect, name='home_redirect'),
+
+    # login
+    path('login/', LoginView.as_view(template_name='login/login.html', redirect_authenticated_user=True), name="login"),
     path('register/', user_views.register, name="register"),
+
+    # logout
+    path('logout/', LogoutView.as_view(template_name='shop/home.html'), {'extra_context':{'message':'True','message_title':'Logout','message_text':'You have logged out successfully'}}, name="logout"),
+
+    # user profile
     path('profile/', user_views.profile, name='profile'),
     path('profile/edit/', user_views.edit_profile, name='edit_profile'),
-    path('profile/password/', user_views.changepassword, name='changepassword'),
-    path('login/', LoginView.as_view(template_name='login/login.html', redirect_authenticated_user=True), name="login"),
+    path('profile/password/', user_views.change_password, name='change_password'),
+
+    # reset password
+    path('reset_password/', PasswordResetView.as_view(template_name='login/resetpassword.html', email_template_name='login/reset_password_email.html'), name="password_reset"),
+    path('reset_password/done/', PasswordResetDoneView.as_view(template_name='login/text.html'), name="password_reset_done"),
+    path('reset_password/complete/', PasswordResetCompleteView.as_view(template_name='login/home.html'), name="password_reset_complete"),
+    path('reset_password/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='login/resetpassword.html'), name="password_reset_confirm"),
 ]
+
+# errors
+handler400 = 'login.views.error_400_view'
+handler403 = 'login.views.error_403_view'
+handler404 = 'login.views.error_404_view'
+handler500 = 'login.views.error_500_view'
