@@ -6,105 +6,95 @@
 {% endblock shopping %}
 
 {% block style %}
-#login {
+<style>
+    h1 {
+    margin-top: 2vh;
+    }
+    .main {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    }
+    .swiper-pagination-bullet {
+    transition: .3s;
+    }
+    .swiper-pagination-bullet:hover {
+    transition: .3s;
+    background-color: rgb(137, 182, 255);
+    }
+    .alert {
+    margin-bottom: 0px;
+    display:none;
+    }
+    .show {
+    top:56px;
+    }
+    .grey-text, .dark-grey-text, .grey-text:hover, .dark-grey-text:hover {
+    text-decoration: none;
+    transition: .2s;
+    -moz-transition: .2s;
+    -webkit-transition: .2s;
+    -o-transition: .2s;
+    }
+    .grey-text {
+    color: #b7b7b7!important;
+    }
+    .grey-text:hover {
+    color: #8e8e8e!important
+    }
+    .dark-grey-text {
+    color: #333232!important
+    }
+    .dark-grey-text:hover {
+    color: #1c1b1b!important
+    }
+    .mask {
+    width: 100%;
+    height: 100%;
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    transition: .2s;
+    -moz-transition: .2s;
+    -webkit-transition: .2s;
+    -o-transition: .2s;
+    }
+    .overlay {
+    width: 100%;
+    position: relative;
 
-color: cornflowerblue;
+    transition: .2s;
+    -moz-transition: .2s;
+    -webkit-transition: .2s;
+    -o-transition: .2s;
+    }
+    .overlay:hover .card-img-top {
+    opacity: 0.3;
+    transition: .2s;
+    -moz-transition: .2s;
+    -webkit-transition: .2s;
+    -o-transition: .2s;
+    }
 
-}
-
-#login:hover {
-
-color: rgb(10, 79, 206);
-transition: 1s;
-
-}
-h1 {
-margin-top: 2vh;
-}
-.main {
-margin-top: 5vh;
-margin-bottom: 5vh;
-}
-.swiper-pagination-bullet {
-transition: .3s;
-}
-.swiper-pagination-bullet:hover {
-transition: .3s;
-background-color: rgb(137, 182, 255);
-}
-.alert {
-margin-bottom: 0px;
-display:none;
-}
-.show {
-top:56px;
-}
-.grey-text, .dark-grey-text, .grey-text:hover, .dark-grey-text:hover {
-text-decoration: none;
-transition: .2s;
--moz-transition: .2s;
--webkit-transition: .2s;
--o-transition: .2s;
-}
-.grey-text {
-color: #b7b7b7!important;
-}
-.grey-text:hover {
-color: #8e8e8e!important
-}
-.dark-grey-text {
-color: #333232!important
-}
-.dark-grey-text:hover {
-color: #1c1b1b!important
-}
-.mask {
-width: 100%;
-height: 100%;
-transition: .5s ease;
-opacity: 0;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
--ms-transform: translate(-50%, -50%);
-text-align: center;
-transition: .2s;
--moz-transition: .2s;
--webkit-transition: .2s;
--o-transition: .2s;
-}
-.overlay {
-width: 100%;
-position: relative;
-
-transition: .2s;
--moz-transition: .2s;
--webkit-transition: .2s;
--o-transition: .2s;
-}
-.overlay:hover .card-img-top {
-opacity: 0.3;
-transition: .2s;
--moz-transition: .2s;
--webkit-transition: .2s;
--o-transition: .2s;
-}
-
-.overlay:hover .mask {
-opacity: 1;
-transition: .2s;
--moz-transition: .2s;
--webkit-transition: .2s;
--o-transition: .2s;
-}
-.linker {
-width: 100%;
-height: 100%;
-}
-.grey_hover:hover {
-color: #666666!important
-}
+    .overlay:hover .mask {
+    opacity: 1;
+    transition: .2s;
+    -moz-transition: .2s;
+    -webkit-transition: .2s;
+    -o-transition: .2s;
+    }
+    .linker {
+    width: 100%;
+    height: 100%;
+    }
+    .grey_hover:hover {
+    color: #666666!important
+    }
+</style>
 {% endblock style %}
 
 
@@ -116,7 +106,7 @@ color: #666666!important
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
 
             <!-- Navbar brand -->
-            <span class="navbar-brand">Categories:</span>
+            <span class="nav-link transition">Categories:</span>
 
             <!-- Collapse button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -129,21 +119,21 @@ color: #666666!important
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">All
+                        <a class="nav-link transition" href="#">All
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Technology</a>
+                        <a class="nav-link transition" href="#">Technology</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Accessories</a>
+                        <a class="nav-link transition" href="#">Accessories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Transportation</a>
+                        <a class="nav-link transition" href="#">Transportation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Other</a>
+                        <a class="nav-link transition" href="#">Other</a>
                     </li>
                 </ul>
                 <form class="form-inline">

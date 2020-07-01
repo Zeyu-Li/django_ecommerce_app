@@ -1,32 +1,34 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %} Register {% endblock title %}
 
 {% block style %}
-
-.main {
-    margin-top: 10vh;
-    margin-bottom: 5vh;
-}
-h2 {
-    padding-top: 50px;
-    font-size: 3em;
-}
-.container {
-    max-width: 960px;
-    background-color: #f7f7f7;
-    border-radius: 30px;
-    border: 1px solid #dadce0;
-}
-.bottom {
-    height: 50px;
-}
-.asteriskField {
-    display: none;
-}
-.requiredField {
-    font-weight: bold;
-}
+<style>
+    .main {
+        margin-top: 10vh;
+        margin-bottom: 5vh;
+    }
+    h2 {
+        padding-top: 50px;
+        font-size: 3em;
+    }
+    .container {
+        max-width: 960px;
+        background-color: #f7f7f7;
+        border-radius: 30px;
+        border: 1px solid #dadce0;
+    }
+    .bottom {
+        height: 50px;
+    }
+    .asteriskField {
+        display: none;
+    }
+    .requiredField {
+        font-weight: bold;
+    }
+</style>
 {% endblock style %}
 
 {% block active %} active {% endblock active %}

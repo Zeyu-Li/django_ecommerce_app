@@ -21,9 +21,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="{% static 'login/css/index.css' %}" type="text/css">
     {% block shopping %}{% endblock shopping %}
-    <style>
-        {% block style %} {% endblock style %}
-    </style>
+    {% block style %} {% endblock style %}
 
 </head>
 
@@ -35,31 +33,31 @@
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'home' %}">
+        <a class="nav-link transition" href="{% url 'home' %}">
             <img src="{% static 'login/images/red_star.svg' %}" width="30" height="30"
                 class="d-inline-block align-top img-fluid hoverable" alt="Red Star Ltd."> Red Star</a>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item {% if page == 'home' %} active {% endif %}">
-                    <a class="nav-link" href="{% url 'home' %}">Home </a>
+                    <a class="nav-link transition" href="{% url 'home' %}">Home </a>
                 </li>
                 {% comment %} <li class="nav-item {% if page == 'shop' %} active {% endif %}">
-                    <a class="nav-link" href="{% url 'item_list' %}">Shop </a>
+                    <a class="nav-link transition" href="{% url 'item_list' %}">Shop </a>
                 </li> {% endcomment %}
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link {% if page == 'cart' %} active {% endif %}" href="#">My Cart </a>
+                    <a class="nav-link transition {% if page == 'cart' %} active {% endif %}" href="#">My Cart </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile' %}">My Proile </a>
+                    <a class="nav-link transition" href="{% url 'profile' %}">My Proile </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Logout </a>
+                    <a class="nav-link transition" href="{% url 'logout' %}">Logout </a>
                 </li>
                 {% else %}
                 <li class="nav-item {% block active %} {% endblock active %}">
-                    <a class="nav-link" href="{% url 'login' %}">Login </a>
+                    <a class="nav-link transition" href="{% url 'login' %}">Login </a>
                 </li>
                 {% endif %}
 
@@ -94,13 +92,13 @@
 
 <footer class="footer">
 
-    <div class="footer1">
-        <p class="footernote">&copy; 2019 Andrew Li. All Rights Reserved.
-        <a class="backtotop" href="#">&#9650; Back to top</a></p>
+    <div class="top_footer">
+        <p class="footnote">&copy; 2019 Andrew Li. All Rights Reserved.
+        <a class="backtotop transition" href="#">&#9650; Back to top</a></p>
     </div>
     <hr class="divider">
     
-    <div class="footer2">
+    <div class="bottom_footer">
 
         <ul class="bottom">
             <li><a href="{% url 'home' %}">Home </a></li>
