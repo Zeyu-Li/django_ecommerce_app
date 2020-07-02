@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %} Profile {% endblock title %}
 
 {% block style %}
 <style>
-    .main {
-        margin-top: 10vh;
-        margin-bottom: 5vh;
+    /* body */
+    .container {
+        padding-bottom: 180px;
     }
-    h2 {
-        font-size: 3em;
-    }
+    
+    /* text */
     h1 {
         padding-top: 50px;
         padding-bottom: 20px;
     }
-    .bottom {
-        height: 180px;
+    h2 {
+        font-size: 3em;
     }
+    
+    /* forms */
     .btn {
         margin-top: 20px;
     }
@@ -28,6 +30,7 @@
 
 {% block text %}
 
+<!-- viewing user info -->
 <div class="container shadow-lg">
     <h1>Profile: {{ user|title }}</h1>
     <p>Email: {{ user.email }}</p>
@@ -35,9 +38,6 @@
     <p>Last Name: {{ user.last_name }}</p>
 
     <p><a href="{% url 'edit_profile' %}" class="btn btn-success">Edit profile</a></p>
-
-    <div class="bottom"></div>
-
 </div>
 
 {% endblock text %}

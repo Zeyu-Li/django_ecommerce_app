@@ -1,19 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %} Shop {% endblock %}
-{% comment %} TODO: https://www.youtube.com/watch?v=Xjty8q524Jo (14:00) {% endcomment %}
-{% block shopping %}
-{% endblock shopping %}
 
 {% block style %}
 <style>
-    h1 {
-    margin-top: 2vh;
-    }
+    /* body */
     .main {
     margin-top: 5vh;
-    margin-bottom: 5vh;
     }
+
+    /* caracel */
     .swiper-pagination-bullet {
     transition: .3s;
     }
@@ -21,20 +18,8 @@
     transition: .3s;
     background-color: rgb(137, 182, 255);
     }
-    .alert {
-    margin-bottom: 0px;
-    display:none;
-    }
-    .show {
-    top:56px;
-    }
-    .grey-text, .dark-grey-text, .grey-text:hover, .dark-grey-text:hover {
-    text-decoration: none;
-    transition: .2s;
-    -moz-transition: .2s;
-    -webkit-transition: .2s;
-    -o-transition: .2s;
-    }
+
+    /* colors */
     .grey-text {
     color: #b7b7b7!important;
     }
@@ -47,6 +32,11 @@
     .dark-grey-text:hover {
     color: #1c1b1b!important
     }
+    .grey_hover:hover {
+    color: #666666!important
+    }
+
+    /* mask */
     .mask {
     width: 100%;
     height: 100%;
@@ -58,42 +48,38 @@
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
-    transition: .2s;
-    -moz-transition: .2s;
-    -webkit-transition: .2s;
-    -o-transition: .2s;
     }
     .overlay {
     width: 100%;
     position: relative;
-
-    transition: .2s;
-    -moz-transition: .2s;
-    -webkit-transition: .2s;
-    -o-transition: .2s;
     }
-    .overlay:hover .card-img-top {
+    .overlay:hover, .card-img-top {
     opacity: 0.3;
-    transition: .2s;
-    -moz-transition: .2s;
-    -webkit-transition: .2s;
-    -o-transition: .2s;
     }
 
     .overlay:hover .mask {
     opacity: 1;
-    transition: .2s;
-    -moz-transition: .2s;
-    -webkit-transition: .2s;
-    -o-transition: .2s;
+    }
+
+    /* other */
+    .grey-text, .dark-grey-text, .grey-text:hover, .dark-grey-text:hover {
+    text-decoration: none;
     }
     .linker {
     width: 100%;
     height: 100%;
     }
-    .grey_hover:hover {
-    color: #666666!important
-    }
+
+    /* transitions */
+    .grey-text, .dark-grey-text, .grey-text:hover, 
+    .dark-grey-text:hover, .overlay:hover, .card-img-top, 
+    .overlay, .mask {
+    transition: .2s;
+    -moz-transition: .2s;
+    -webkit-transition: .2s;
+    -o-transition: .2s;
+
+}
 </style>
 {% endblock style %}
 

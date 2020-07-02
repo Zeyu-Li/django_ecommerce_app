@@ -1,26 +1,26 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %} Reset Password {% endblock title %}
 
 {% block style %}
 <style>
-    .main {
-        margin-top: 10vh;
-        margin-bottom: 5vh;
-    }
-    h2 {
-        padding-top: 50px;
-        font-size: 2.5em;
-    }
+    /* body */
     .container {
         max-width: 960px;
         background-color: #f7f7f7;
         border-radius: 30px;
         border: 1px solid #dadce0;
+        padding-bottom: 150px;
     }
-    .bottom {
-        height: 150px;
+
+    /* text */
+    h2 {
+        padding-top: 50px;
+        font-size: 2.5em;
     }
+
+    /* forms */
     .asteriskField {
         display: none;
     }
@@ -44,6 +44,5 @@
     <h2>Password Reset Sent<br></h2>
     <p><br>If you don't receive an email, please make sure you've entered the address you registered with, and check your spam folder.</p>
     </form>
-    <div class="bottom"></div>
 </div>
 {% endblock text %}

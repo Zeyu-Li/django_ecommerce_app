@@ -1,26 +1,26 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %} Edit Profile {% endblock title %}
 
 {% block style %}
 <style>
-    .main {
-        margin-top: 10vh;
-        margin-bottom: 5vh;
-    }
-    h2 {
-        padding-top: 50px;
-        font-size: 3em;
-    }
+    /* body */
     .container {
         max-width: 960px;
         background-color: #f7f7f7;
         border-radius: 30px;
         border: 1px solid #dadce0;
+        padding-bottom: 50px;
     }
-    .bottom {
-        height: 50px;
+    
+    /* text */
+    h2 {
+        padding-top: 50px;
+        font-size: 3em;
     }
+    
+    /* forms */
     .asteriskField {
         display: none;
     }
@@ -47,6 +47,5 @@
         {{ form|crispy }}
         <button type="submit" class="btn btn-success">Save Edits</button>
     </form>
-    <div class="bottom"></div>
 </div>
 {% endblock text %}

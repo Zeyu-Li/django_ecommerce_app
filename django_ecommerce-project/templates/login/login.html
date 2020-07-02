@@ -1,26 +1,26 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %} Login {% endblock title %}
 
 {% block style %}
 <style>
-    .main {
-        margin-top: 20vh;
-        margin-bottom: 20vh;
-    }
-    h2 {
-        padding-top: 50px;
-        font-size: 3em;
-    }
+    /* body */
     .container {
         max-width: 960px;
         background-color: #f7f7f7;
         border-radius: 30px;
         border: 1px solid #dadce0;
+        padding-bottom: 50px;
     }
-    .bottom {
-        height: 50px;
+    
+    /* text */
+    h2 {
+        padding-top: 50px;
+        font-size: 3em;
     }
+    
+    /* forms */
     .asteriskField {
         display: none;
     }
@@ -32,12 +32,10 @@
     }
     .register a {
         text-decoration: none;
-        transition: .2s;
-        -moz-transition: .2s;
-        -webkit-transition: .2s;
-        -o-transition: .2s
     }
-    .register a:hover {
+
+    /* transition */
+    .register a, .register a:hover {
         transition: .2s;
         -moz-transition: .2s;
         -webkit-transition: .2s;
@@ -59,8 +57,9 @@
         {{ form|crispy }}
         <button type="submit" class="btn btn-success">Login</button>
     </form>
-    <div class="bottom"></div>
 </div>
+
+<!-- footnotes -->
 <div><p class="register">Did you forget your password? Click this <a href="{% url 'password_reset' %}">link</a> (Not working due to no email server setup)</p></div>
 <div><p class="register">Not a member? <a href="{% url 'register' %}">Register</a> for free now.</p></div>
 {% endblock text %}

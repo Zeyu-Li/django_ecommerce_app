@@ -3,17 +3,17 @@
 
 {% block title %} Home {% endblock %}
 
-{% block shopping %}
-    <!-- swiper carousel http://idangero.us/swiper/demos/200-infinite-loop.html -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
-{% endblock shopping %}
-
 {% block style %}
+<!-- swiper carousel http://idangero.us/swiper/demos/200-infinite-loop.html -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+
 <style>
+    /* body */
     .main {
         margin-top: 5vh;
-        margin-bottom: 5vh;
     }
+
+    /* carousel */
     .swiper-pagination-bullet {
         transition: .3s;
     }
@@ -21,18 +21,12 @@
         transition: .3s;
         background-color: rgb(137, 182, 255);
     }
-    .alert {
-        margin-bottom: 0px;
-        display:none;
-    }
-    .show {
-        top:56px;
-    }
 </style>
 {% endblock style %}
 
 {% block banner %}
 
+<!-- alert for when you log out -->
 {% if extra_context.message %}
 <div class="alert alert-warning alert-dismissible show" role="alert">
     <strong>{{ extra_context.message_title }}</strong> {{ extra_context.message_text }}
@@ -46,7 +40,7 @@
 <div class="swiper-container">
     <div class="swiper-wrapper">
         <div class="swiper-slide"><img src="{% static 'login/images/opening1.svg' %}" alt="Grand Opening" title="Grand Opening of Red Star"></div>
-        <div class="swiper-slide"><a href="#"><img src="{% static 'login/images/opening2.svg' %}" alt="Great Deals" title="Greatest Deals in the Country"></a></div>
+        <div class="swiper-slide"><a href="#"><img src="{% static 'login/images/opening2.svg' %}" alt="Greatest Deals in the country" title="Greatest Deals in the Country"></a></div>
         {% comment %} <div class="swiper-slide"><a href="{% url 'register' %}"><img src="{% static 'login/images/opening3.svg' %}" alt="Sign up today" title="Sign Up"></a></div> {% endcomment %}
     </div>
     <!-- Add Pagination -->
@@ -60,28 +54,27 @@
 
 {% block text %} 
 
+<!-- about this site -->
 <h1>Red Star</h1>
 <p><br>At Red Star, we are here to help you find what you desperately need.
 From bicycles to food to operating system, we have got you covered.
 Here at Red Star, we have dedicated our products to be cheap and reliable.
 <b>100%</b> of our products are sweat shop free we hope to statify your needs.</p>
 
-{% endblock text %}
 
-{% block products %}
+<!-- TODO: some products from the shop -->
+<div class="products">
+    <h2>Products</h2>
 
-<h2>Products</h2>
-
-<div class="push">
-
+    <div class="push">
+        <p></p>
+    </div>
 </div>
 
-{% endblock products %}
+{% endblock text %}
 
 
 {% block scripts %}
-
-
 <!-- swiper carousel http://idangero.us/swiper/demos/200-infinite-loop.html -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 <script>

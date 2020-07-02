@@ -42,8 +42,10 @@ body {
 }
 .main {
     display: block;
-    margin: 0 auto -188px;
     max-width: 960px;
+    margin: 0 auto -188px;
+    margin-top: 10vh;
+    margin-bottom: 5vh;
 }
 
 /* text */
@@ -60,6 +62,15 @@ p {
     line-height: 1.7em;
     padding-left: 2em;
     padding-right: 2em;
+}
+
+/* notifications */
+.show {
+    top:56px;
+}
+.alert {
+    margin-bottom: 0px;
+    display:none;
 }
 
 /* banner */

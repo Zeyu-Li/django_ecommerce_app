@@ -22,6 +22,8 @@ from django.contrib.auth.views import (
 # import both app modules
 from login import views as user_views
 from shop import views as shop_views
+# TODO: https://www.youtube.com/watch?v=Xjty8q524Jo (14:00)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,7 +37,7 @@ urlpatterns = [
     path('register/', user_views.register, name="register"),
 
     # logout
-    path('logout/', LogoutView.as_view(template_name='shop/home.html'), {'extra_context':{'message':'True','message_title':'Logout','message_text':'You have logged out successfully'}}, name="logout"),
+    path('logout/', LogoutView.as_view(template_name='shop/home.html'), {'extra_context':{'message':'True','message_title':'Logout: ','message_text':'You have logged out successfully'}}, name="logout"),
 
     # user profile
     path('profile/', user_views.profile, name='profile'),

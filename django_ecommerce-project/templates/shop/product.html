@@ -1,19 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block shopping %}
-{% endblock shopping %}
 
 {% block title %} Product {% endblock %}
 
 {% block style %}
 <style>
-    h1 {
-        margin-top: 2vh;
-    }
+    /* body */
     .main {
         margin-top: 5vh;
-        margin-bottom: 5vh;
     }
+
+    /* carousel */
     .swiper-pagination-bullet {
         transition: .3s;
     }
@@ -21,31 +18,24 @@
         transition: .3s;
         background-color: rgb(137, 182, 255);
     }
-    .alert {
-        margin-bottom: 0px;
-        display:none;
-    }
-    .show {
-        top:56px;
-    }
 </style>
 {% endblock style %}
 
 {% block text %}
+<!-- card on store item -->
+
 <!--Main layout-->
 <main class="mt-5 pt-4">
-    <div class="container dark-grey-text mt-5">
+<div class="container dark-grey-text mt-5">
 
     <!--Grid row-->
     <div class="row wow fadeIn">
 
+        <!-- product image -->
         <!--Grid column-->
         <div class="col-md-6 mb-4">
-
-        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
-
+            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
         </div>
-        <!--Grid column-->
 
         <!--Grid column-->
         <div class="col-md-6 mb-4">
@@ -53,38 +43,41 @@
         <!--Content-->
         <div class="p-4">
 
+            <!-- product item badge -->
             <div class="mb-3">
                 <a href="">
                     <span class="badge badge-secondary">{{ item.get_category_display }}</span>
                 </a>
             </div>
 
+            <!-- product item price -->
             <p class="lead">
+            <!-- discount if it applies -->
             {% if item.discounted_price %}
-            <span class="mr-1">
-                <del>${{ item.price }}</del>
-                <span>${{ item.discounted_price }}</span>
-            </span>
+                <span class="mr-1">
+                    <del>${{ item.price }}</del>
+                    <span>${{ item.discounted_price }}</span>
+                </span>
             {% else %}
                 <span>${{ item.price }}</span>
             {% endif %}</span>
             </p>
 
+            <!-- item descriptions -->
             <p class="lead font-weight-bold">Description</p>
-
             <p>{{ item.description }}</p>
-
             <br>
 
             {% comment %} <form class="d-flex justify-content-left">
-            <!-- Default input -->
+            <!-- add to cart -->
 
             </form> {% endcomment %}
             <a href="{{ items.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">
                 Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
             </a>
-            {% comment %} <a href="{{ item.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
+            {% comment %} 
+            <a href="{{ item.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
                 Remove from cart
             </a> {% endcomment %}
         </div>
@@ -98,25 +91,17 @@
 
     <hr>
 
+    <!-- bottom note -->
     <!--Grid row-->
     <div class="row d-flex justify-content-center wow fadeIn">
-
         <!--Grid column-->
         <div class="col-md-6 text-center">
-
-        <h4 class="my-4 h4">More Products</h4>
-
-        <p> TODO: list of more products </p>
-
+            <h4 class="my-4 h4">More Products</h4>
+            <p> TODO: list of more products </p>
         </div>
-        <!--Grid column-->
-
     </div>
     <!--Grid row-->
-
-    <!--Grid row-->
-
-    </div>
+</div>
 </main>
 <!--Main layout-->
 {% endblock text %}
