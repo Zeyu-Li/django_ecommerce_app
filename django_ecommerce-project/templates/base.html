@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE HTML>
 <html>
 
@@ -6,46 +7,62 @@
 
     <!-- meta -->
     <meta charset="utf-8">
-    <meta name="description" content="Login website">
-    <meta name="keywords" content="andrew li, login, user, password">
+    <meta name="description" content="Red Star Ecommerce Website">
+    <meta name="keywords" content="red star, red, ecommerce, shop, andrew li">
     <meta name="author" content="Andrew Li">
     <meta name=viewport content="width=device-width, initial-scale=1">
+
     <!-- Mini icon on tab -->
     <link rel="icon" href="{% static 'login/images/favicon.ico' %}" type="image/ico">
+
     <!-- Title of page -->
     <title> Red Star | {% block title %} {% endblock title %} </title>
+
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
     <!-- Styleshet -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="{% static 'login/css/index.css' %}" type="text/css">
-    {% block shopping %}{% endblock shopping %}
+
+    <!-- additional styles from extension -->
     {% block style %} {% endblock style %}
 
 </head>
 
 <body>
 
-    <!-- nav -->
+    <!-- top nav bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+
+        <!-- hamburger tabs once window small enough -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="nav-link transition" href="{% url 'home' %}">
-            <img src="{% static 'login/images/red_star.svg' %}" width="30" height="30"
-                class="d-inline-block align-top img-fluid hoverable" alt="Red Star Ltd."> Red Star</a>
 
+        <!-- logo -->
+        <a class="nav-link transition logo" href="{% url 'home' %}">
+            <img src="{% static 'login/images/red_star.svg' %}" width="30" height="30"
+                class="d-inline-block align-top img-fluid hoverable" alt="Red Star Ltd."> 
+            <span>Red Star</span> 
+        </a>
+
+        <!-- other tabs -->
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item {% if page == 'home' %} active {% endif %}">
                     <a class="nav-link transition" href="{% url 'home' %}">Home </a>
                 </li>
-                {% comment %} <li class="nav-item {% if page == 'shop' %} active {% endif %}">
+                {% comment %} 
+                <li class="nav-item {% if page == 'shop' %} active {% endif %}">
                     <a class="nav-link transition" href="{% url 'item_list' %}">Shop </a>
-                </li> {% endcomment %}
+                </li> 
+                {% endcomment %}
+
                 {% if user.is_authenticated %}
+                <!-- if user is authenticated, this part is shown -->
                 <li class="nav-item">
                     <a class="nav-link transition {% if page == 'cart' %} active {% endif %}" href="#">My Cart </a>
                 </li>
@@ -62,6 +79,8 @@
                 {% endif %}
 
             </ul>
+
+            <!-- TODO: search field -->
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -85,21 +104,22 @@
         {% endblock products %}
     </div>
 
-<div class="push">
+    <!-- additional scripts -->
     {% block scripts %}
     {% endblock scripts %}
-</div>
+
 
 <footer class="footer">
+    <!-- footer is divided into the top, divider, and bottom -->
 
     <div class="top_footer">
-        <p class="footnote">&copy; 2019 Andrew Li. All Rights Reserved.
+        <p class="footnote">&copy; 2020 Andrew Li. All Rights Reserved.
         <a class="backtotop transition" href="#">&#9650; Back to top</a></p>
     </div>
+
     <hr class="divider">
     
     <div class="bottom_footer">
-
         <ul class="bottom">
             <li><a href="{% url 'home' %}">Home </a></li>
             {% comment %} <li><a href="{% url 'item_list' %}">Shop </a></li> {% endcomment %}
@@ -112,15 +132,15 @@
             {% endif %}
         </ul>
 
+        <!-- back to top smooth animation script -->
+        <script>
+        $(".backtotop").click(function () {
+            return $("html, body").animate({
+                scrollTop: 0
+            }, 300), !1
+        })
+        </script>
     </div>
-
-<script>
-$(".backtotop").click(function () {
-    return $("html, body").animate({
-        scrollTop: 0
-    }, 300), !1
-})
-</script>
 
 </footer>
 

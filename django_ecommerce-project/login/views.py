@@ -80,7 +80,7 @@ def change_password(request):
 
         return render(request, 'login/change_password.html', args)
 
-# errors
+# errors, maybe move to different app??
 def error_400_view(request, exception):
     return render(request, 'errors/400.html')
 

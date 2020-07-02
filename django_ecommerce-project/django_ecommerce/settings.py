@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# TODO: DEBUG = False, move secret_key to a different file + generate a new key for production: https://humberto.io/blog/tldr-generate-django-secret-key/
+# TODO: DEBUG = False, change host, move secret_key to a different file + generate a new key for production: https://humberto.io/blog/tldr-generate-django-secret-key/
 
 with open('django_ecommerce/key.txt', 'r') as fp:
     SECRET_KEY = fp.read().strip()

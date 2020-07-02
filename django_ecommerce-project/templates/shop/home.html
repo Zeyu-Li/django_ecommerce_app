@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %} Home {% endblock %}
+
 {% block shopping %}
     <!-- swiper carousel http://idangero.us/swiper/demos/200-infinite-loop.html -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
 {% endblock shopping %}
+
 {% block style %}
 <style>
     .main {
@@ -22,6 +25,9 @@
         margin-bottom: 0px;
         display:none;
     }
+    .show {
+        top:56px;
+    }
 </style>
 {% endblock style %}
 
@@ -36,7 +42,7 @@
 </div>
 {% endif %}
 
-
+<!-- carousel -->
 <div class="swiper-container">
     <div class="swiper-wrapper">
         <div class="swiper-slide"><img src="{% static 'login/images/opening1.svg' %}" alt="Grand Opening" title="Grand Opening of Red Star"></div>
@@ -66,49 +72,53 @@ Here at Red Star, we have dedicated our products to be cheap and reliable.
 
 <h2>Products</h2>
 
+<div class="push">
+
+</div>
+
 {% endblock products %}
 
 
 {% block scripts %}
 
 
-    <!-- swiper carousel http://idangero.us/swiper/demos/200-infinite-loop.html -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            spaceBetween: 0,
-            centeredSlides: true,
-            loop: true,
-        autoplay: {
-            delay: 4200,
-            disableOnInteraction: false,
+<!-- swiper carousel http://idangero.us/swiper/demos/200-infinite-loop.html -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        spaceBetween: 0,
+        centeredSlides: true,
+        loop: true,
+    autoplay: {
+        delay: 4200,
+        disableOnInteraction: false,
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
         },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-            },
-        });
-
-        $(".close").click(function(){
-            $(".alert").slideUp();
-        });
-
-        $(document).ready(function() {
-            $(".alert").slideDown();
-            var mySwiper = document.querySelector('.swiper-container').swiper
-
-            $(".swiper-container").mouseenter(function() {
-                mySwiper.autoplay.stop();
-            });
-
-            $(".swiper-container").mouseleave(function() {
-                mySwiper.autoplay.start();
-            });
     });
-    </script>
+
+    $(".close").click(function(){
+        $(".alert").slideUp();
+    });
+
+    $(document).ready(function() {
+        $(".alert").slideDown();
+        var mySwiper = document.querySelector('.swiper-container').swiper
+
+        $(".swiper-container").mouseenter(function() {
+            mySwiper.autoplay.stop();
+        });
+
+        $(".swiper-container").mouseleave(function() {
+            mySwiper.autoplay.start();
+        });
+});
+</script>
 
 {% endblock scripts %}
