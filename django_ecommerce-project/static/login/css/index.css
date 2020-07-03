@@ -43,6 +43,7 @@ body {
 .main {
     display: block;
     max-width: 960px;
+    min-height: 65vh;
     margin: 0 auto -188px;
     margin-top: 10vh;
     margin-bottom: 5vh;
@@ -65,12 +66,20 @@ p {
 }
 
 /* notifications */
-.show {
-    top:56px;
+.m-0 {
+    list-style-type:none;
 }
-.alert {
-    margin-bottom: 0px;
-    display:none;
+.alert-notification {
+    position:absolute;
+    z-index: 100;
+    width: 100vw;
+    top: 62px;
+    border-radius: 0px;
+}
+.close {
+    top: -3px!important;
+    right: 5px!important;
+    transition: all .15s ease-in-out;
 }
 
 /* banner */
@@ -129,7 +138,6 @@ p {
     font-size: 13px;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 30px;
 }
 
 .footnote {

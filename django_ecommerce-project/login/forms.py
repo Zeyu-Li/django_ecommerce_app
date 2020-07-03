@@ -42,7 +42,7 @@ class EditProfileForm(UserChangeForm):
     ''' editting a profile '''
 
     class Meta:
-        ''' you can only chang your email, first and last name when editing your profile '''
+        ''' you can only change your email, first and last name when editing your profile '''
         model = User
         fields = (
             'email',

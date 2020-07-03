@@ -28,7 +28,7 @@
 
 <!-- alert for when you log out -->
 {% if extra_context.message %}
-<div class="alert alert-warning alert-dismissible show" role="alert">
+<div class="alert alert-success alert-dismissible alert-notification fade show" role="alert">
     <strong>{{ extra_context.message_title }}</strong> {{ extra_context.message_text }}
     <button type="button" class="close">
         <span aria-hidden="true">&times;</span>

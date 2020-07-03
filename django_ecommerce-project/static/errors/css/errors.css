@@ -3,18 +3,3 @@
     margin-top: 5vh;
     margin-bottom: 5vh;
 }
-
-.swiper-pagination-bullet {
-    transition: .3s;
-}
-.swiper-pagination-bullet:hover {
-    transition: .3s;
-    background-color: rgb(137, 182, 255);
-}
-.alert {
-    margin-bottom: 0px;
-    display:none;
-}
-.show {
-    top:56px;
-}

@@ -26,6 +26,7 @@ from shop import views as shop_views
 
 
 urlpatterns = [
+    # admin
     path('admin/', admin.site.urls),
 
     # home views

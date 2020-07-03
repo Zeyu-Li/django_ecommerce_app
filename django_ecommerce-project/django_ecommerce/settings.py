@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 # two apps, one for login and another for the shop
-# + 2 modules of crispy forms and the recaptcha with register
+# + 2 modules; crispy forms and the recaptcha with register
 INSTALLED_APPS = [
     'login',
     'shop',
@@ -137,7 +137,7 @@ LOGIN_REDIRECT_URL = '/'
 # added crispy module for forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# recaptcha keys 
+# recaptcha keys, generate a new one here-> https://www.google.com/recaptcha/admin/create (note, v2)
 RECAPTCHA_PUBLIC_KEY = '6LftJ6wZAAAAANJrMfgEZ2K-AkHkUbR_-4Bm12f2'
 
 RECAPTCHA_PRIVATE_KEY = '6LftJ6wZAAAAAMGGD891Cd6CWjT7N4xJFYnJ5NhG'
