@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, authenticate
 
 # django auth backend
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
@@ -19,19 +19,27 @@ def register(request):
         extra_context = {'extra_context':{'message':'True','message_title':'Warning: ','message_text':'You are already logged in'}}
         return render(request, 'login/home.html', extra_context)
 
-    # if request is post, redirect to home if it is valid
+    # if request is post
     if request.method == 'POST':
+        # get the post form
         form = RegistrationForm(request.POST)
+
+        # check to see if the form is valid
         if form.is_valid():
+            # if it is valid, save and redirect to home
             form.save()
             
-            update_session_auth_hash(request, form.user)
+            # TODO: Keep logged in after registered
             return redirect('home')
+        else:
+            # form is not valid and return form with error
+            args = {'form': form}
+            return render(request, 'login/register.html', args)
+    # if request is not post, user probably wants the webpage with a empty form
     else:
-        # give user register form
+        # give user clean register form
         form = RegistrationForm()
         args = {'form':form}
-
         return render(request, 'login/register.html', args)
 
 
@@ -48,11 +56,16 @@ def edit_profile(request):
     ''' edit profile if logged in '''
 
     if request.method == 'POST':
-        # if post request, check to see if form is valid
         form = EditProfileForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('profile')
+
+            extra_context = {'extra_context':{'message':'True','message_title':'Changed Profile: ','message_text':'successful!'}}
+            return render(request, 'login/profile.html', extra_context)
+        else:
+            # form for in valid error
+            args = {'form': form}
+            return render(request, 'login/edit_profile.html', args)
 
     else:
         # give user edit profile form
@@ -70,16 +83,19 @@ def change_password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            return redirect('profile')
+            extra_context = {'extra_context':{'message':'True','message_title':'Changed Password: ','message_text':'successful!'}}
+            return render(request, 'login/profile.html', extra_context)
         else:
-            return redirect('change_password')
+            # form for in valid error
+            args = {'form': form}
+            return render(request, 'login/change_password.html', args)
 
     else:
         # give user change password form
         form = PasswordChangeForm(user=request.user)
         args = {'form': form}
-
         return render(request, 'login/change_password.html', args)
+
 
 # errors, maybe move to different app??
 def error_400_view(request, exception):
