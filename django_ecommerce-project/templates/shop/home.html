@@ -28,7 +28,7 @@
 
 <!-- alert for when you log out -->
 {% if extra_context.message %}
-<div class="alert alert-success alert-dismissible alert-notification fade show" role="alert">
+<div class="alert alert-success alert-dismissible alert-notification" role="alert">
     <strong>{{ extra_context.message_title }}</strong> {{ extra_context.message_text }}
     <button type="button" class="close">
         <span aria-hidden="true">&times;</span>
@@ -78,6 +78,7 @@ Here at Red Star, we have dedicated our products to be cheap and reliable.
 <!-- swiper carousel http://idangero.us/swiper/demos/200-infinite-loop.html -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 <script>
+    // swiper settings
     var swiper = new Swiper('.swiper-container', {
         spaceBetween: 0,
         centeredSlides: true,
@@ -96,22 +97,24 @@ Here at Red Star, we have dedicated our products to be cheap and reliable.
         },
     });
 
-    $(".close").click(function(){
-        $(".alert").slideUp();
-    });
-
     $(document).ready(function() {
         $(".alert").slideDown();
+
+        // get swiper
         var mySwiper = document.querySelector('.swiper-container').swiper
 
+        // pause and resume swiper when entering and exiting the slider with mouse
         $(".swiper-container").mouseenter(function() {
             mySwiper.autoplay.stop();
         });
-
         $(".swiper-container").mouseleave(function() {
             mySwiper.autoplay.start();
         });
-});
+    });
+
+    $(".close").click(function(){
+        $(".alert").slideUp();
+    });
 </script>
 
 {% endblock scripts %}

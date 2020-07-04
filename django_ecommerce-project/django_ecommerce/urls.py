@@ -49,8 +49,9 @@ urlpatterns = [
     # reset password
     path('reset_password/', PasswordResetView.as_view(template_name='login/resetpassword.html', email_template_name='login/reset_password_email.html'), name="password_reset"),
     path('reset_password/done/', PasswordResetDoneView.as_view(template_name='login/text.html'), name="password_reset_done"),
-    path('reset_password/complete/', PasswordResetCompleteView.as_view(template_name='login/home.html'), name="password_reset_complete"),
-    path('reset_password/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='login/resetpassword.html'), name="password_reset_confirm"),
+    path('reset_password/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='login/change_password.html'), name="password_reset_confirm"),
+    # redirect to login
+    path('reset_password/complete/', PasswordResetCompleteView.as_view(template_name='shop/home.html'), {'extra_context':{"page": "home", 'message':'True','message_title':'Change Password: ','message_text':'You have successfully changed your password'}}, name="password_reset_complete"),
 ]
 
 # errors

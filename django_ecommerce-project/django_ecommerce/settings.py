@@ -141,3 +141,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 RECAPTCHA_PUBLIC_KEY = '6LftJ6wZAAAAANJrMfgEZ2K-AkHkUbR_-4Bm12f2'
 
 RECAPTCHA_PRIVATE_KEY = '6LftJ6wZAAAAAMGGD891Cd6CWjT7N4xJFYnJ5NhG'
+
+# debug email server, run with => python -m smtpd -n -c DebuggingServer localhost:1025
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025

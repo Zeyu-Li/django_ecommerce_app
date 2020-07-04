@@ -81,6 +81,9 @@ p {
     right: 5px!important;
     transition: all .15s ease-in-out;
 }
+.alert-dismissible {
+    display: none;
+}
 
 /* banner */
 .nav-link {

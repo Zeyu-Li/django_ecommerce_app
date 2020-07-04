@@ -30,6 +30,19 @@
 
 {% block profile %} active {% endblock profile %}
 
+{% block banner %}
+
+<!-- alert for when you log out -->
+{% if extra_context.message %}
+<div class="alert alert-success alert-dismissible alert-notification" role="alert">
+    <strong>{{ extra_context.message_title }}</strong> {{ extra_context.message_text }}
+    <button type="button" class="close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
+{% endblock banner %}
+
 {% block text %}
 
 <!-- viewing user info -->
@@ -43,3 +56,17 @@
 </div>
 
 {% endblock text %}
+
+{% block scripts %}
+<script>
+    // when document loads, slide alert down
+    $(document).ready(function() {
+        $(".alert").slideDown();
+    });
+
+    // once close is clicked, slide up the alert
+    $(".close").click(function(){
+        $(".alert").slideUp();
+    });
+</script>
+{% endblock scripts %}

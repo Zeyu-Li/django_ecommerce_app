@@ -60,6 +60,7 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
 
+            # renders success message
             extra_context = {'extra_context':{'message':'True','message_title':'Changed Profile: ','message_text':'successful!'}}
             return render(request, 'login/profile.html', extra_context)
         else:
@@ -83,6 +84,7 @@ def change_password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
+
             extra_context = {'extra_context':{'message':'True','message_title':'Changed Password: ','message_text':'successful!'}}
             return render(request, 'login/profile.html', extra_context)
         else:
