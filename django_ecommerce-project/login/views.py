@@ -24,6 +24,8 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
+            
+            update_session_auth_hash(request, form.user)
             return redirect('home')
     else:
         # give user register form
@@ -69,7 +71,6 @@ def change_password(request):
             form.save()
             update_session_auth_hash(request, form.user)
             return redirect('profile')
-
         else:
             return redirect('change_password')
 

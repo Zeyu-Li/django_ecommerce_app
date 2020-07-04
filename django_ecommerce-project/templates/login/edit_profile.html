@@ -35,7 +35,7 @@
 </style>
 {% endblock style %}
 
-{% block active %} active {% endblock active %}
+{% block profile %} active {% endblock profile %}
 
 {% block text %}
 
@@ -46,6 +46,7 @@
     <form method="POST" class="django_form">
         {% csrf_token %}
         {{ form|crispy }}
+        <small>You can change your password using <a href="{% url 'change_password' %}">this form</a>.</small> <br><br>
         <button type="submit" class="btn btn-success">Save Edits</button>
     </form>
 </div>

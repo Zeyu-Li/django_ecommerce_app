@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordResetView, 
-    PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView,
+    PasswordResetConfirmView, PasswordResetDoneView, 
+    PasswordResetCompleteView, PasswordChangeView
 )
 # import both app modules
 from login import views as user_views
@@ -38,12 +39,12 @@ urlpatterns = [
     path('register/', user_views.register, name="register"),
 
     # logout
-    path('logout/', LogoutView.as_view(template_name='shop/home.html'), {'extra_context':{'message':'True','message_title':'Logout: ','message_text':'You have logged out successfully'}}, name="logout"),
+    path('logout/', LogoutView.as_view(template_name='shop/home.html'), {'extra_context':{"page": "home", 'message':'True','message_title':'Logout: ','message_text':'You have logged out successfully'}}, name="logout"),
 
     # user profile
     path('profile/', user_views.profile, name='profile'),
     path('profile/edit/', user_views.edit_profile, name='edit_profile'),
-    path('profile/password/', user_views.change_password, name='change_password'),
+    path('profile/password/', PasswordChangeView.as_view(template_name='login/change_password.html',), name='change_password'),
 
     # reset password
     path('reset_password/', PasswordResetView.as_view(template_name='login/resetpassword.html', email_template_name='login/reset_password_email.html'), name="password_reset"),

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm
 from captcha.fields import ReCaptchaField
 
 
@@ -38,7 +38,7 @@ class RegistrationForm(UserCreationForm):
         return user
 
 
-class EditProfileForm(UserChangeForm):
+class EditProfileForm(forms.ModelForm):
     ''' editting a profile '''
 
     class Meta:
