@@ -18,10 +18,31 @@
         transition: .3s;
         background-color: rgb(137, 182, 255);
     }
+
+    /* btns */
+    .carts a {
+        margin-right: 10px;
+    }
 </style>
 {% endblock style %}
 
 {% block shop_active %} active {% endblock shop_active %}
+
+{% block banner %}
+
+<!-- cart message -->
+{% if messages %}
+
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible alert-notification" role="alert">
+    {{ message }}
+    <button type="button" class="close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock banner %}
 
 {% block text %}
 <div class="container dark-grey-text mt-5">
@@ -60,17 +81,17 @@
         <p>{{ item.description }}</p>
         <br>
 
-        <!-- add to cart -->
-        <form class="d-flex justify-content-left">
+        <form class="d-flex justify-content-left carts">
+            <!-- add to cart -->
             <a href="{{ item.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">
                 Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
             </a>
+            <!-- remove from cart -->
+            <a href="{{ item.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
+                Remove from cart
+            </a>
         </form>
-        {% comment %} 
-        <a href="{{ item.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
-            Remove from cart
-        </a> {% endcomment %}
     </div>
     </div>
 </div>
@@ -86,3 +107,17 @@
 </div>
 </div>
 {% endblock text %}
+
+{% block scripts %}
+<script>
+    // when document loads, slide alert down
+    $(document).ready(function() {
+        $(".alert").slideDown();
+    });
+
+    // once close is clicked, slide up the alert
+    $(".close").click(function(){
+        $(".alert").slideUp();
+    });
+</script>
+{% endblock scripts %}
