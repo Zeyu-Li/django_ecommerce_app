@@ -48,7 +48,7 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=1)                                                       # how many items there are
 
     def __str__(self):
-        return f"{self.quantity} of {self.items.title}"
+        return f"{self.quantity} of {self.item.title}"
 
 
 class Order(models.Model):
