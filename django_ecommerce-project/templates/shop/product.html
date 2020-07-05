@@ -10,6 +10,11 @@
         margin-top: 5vh;
     }
 
+    /* title */
+    h1 {
+        padding-bottom: 10px;
+    }
+
     /* carousel */
     .swiper-pagination-bullet {
         transition: .3s;
@@ -22,6 +27,11 @@
     /* btns */
     .carts a {
         margin-right: 10px;
+    }
+
+    /* image */
+    .product_image {
+        padding: 1.5rem!important;
     }
 </style>
 {% endblock style %}
@@ -46,10 +56,11 @@
 
 {% block text %}
 <div class="container dark-grey-text mt-5">
+<h1> {{ item.title }} </h1>
 <div class="row wow fadeIn">
 
     <!-- product image -->
-    <div class="col-md-6 mb-4">
+    <div class="col-md-6 mb-4 product_image">
         <img src="{{ item.image.url }}" class="img-fluid" alt="">
     </div>
 

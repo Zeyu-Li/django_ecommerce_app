@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordResetView, 
     PasswordResetConfirmView, PasswordResetDoneView, 
@@ -27,6 +27,10 @@ from shop import views as shop_views
 
 # shop stuff
 from shop.views import ItemsView, ItemDetailView, add_to_cart, remove_from_cart
+
+# image view
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 # admin stuff
@@ -78,3 +82,7 @@ handler400 = 'login.views.error_400_view'
 handler403 = 'login.views.error_403_view'
 handler404 = 'login.views.error_404_view'
 handler500 = 'login.views.error_500_view'
+
+# images
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -12,14 +12,14 @@ def item_list(request):
     ''' list all item in shop '''
     context = {
         'items': Item.objects.all(),
-        'page': 'shop'
+        'page': 'shop',
     }
     return render(request, 'shop/shop.html', context)
 
 def product(request):
     ''' product item page '''
     context = {
-        'page': 'shop'
+        'page': 'shop',
     }
     return render(request, 'shop/product.html', context)
 

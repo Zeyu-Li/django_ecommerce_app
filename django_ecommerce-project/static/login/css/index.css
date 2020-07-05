@@ -185,6 +185,7 @@ p {
     padding-left: 0px;
 }
 
+
 /* addition styles */
 .transition, .nav-link:hover, .navbar-brand:hover, .bottom>li>a:hover,
 .backtotop:hover, .bottom>li>a {
@@ -192,6 +193,17 @@ p {
     -moz-transition: .2s;
     -webkit-transition: .2s;
     -o-transition: .2s;
+}
+.preview_image_container {
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.card-img-top {
+    opacity: 0.95!important;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 /* scrollbar */
