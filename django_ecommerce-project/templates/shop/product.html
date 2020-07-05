@@ -21,87 +21,68 @@
 </style>
 {% endblock style %}
 
+{% block shop_active %} active {% endblock shop_active %}
+
 {% block text %}
-<!-- card on store item -->
-
-<!--Main layout-->
-<main class="mt-5 pt-4">
 <div class="container dark-grey-text mt-5">
+<div class="row wow fadeIn">
 
-    <!--Grid row-->
-    <div class="row wow fadeIn">
+    <!-- product image -->
+    <div class="col-md-6 mb-4">
+        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
+    </div>
 
-        <!-- product image -->
-        <!--Grid column-->
-        <div class="col-md-6 mb-4">
-            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
+    <div class="col-md-6 mb-4">
+    <div class="p-4 item-description">
+
+        <!-- product item badge -->
+        <div class="mb-3">
+            <a href="">
+                <span class="badge badge-secondary">{{ item.get_category_display }}</span>
+            </a>
         </div>
 
-        <!--Grid column-->
-        <div class="col-md-6 mb-4">
+        <!-- product item price -->
+        <p class="lead">
+        <!-- discount if it applies -->
+        {% if item.discounted_price %}
+            <span class="mr-1">
+                <del>${{ item.price }}</del>
+                <span>${{ item.discounted_price }}</span>
+            </span>
+        {% else %}
+            <span>${{ item.price }}</span>
+        {% endif %}</span>
+        </p>
 
-        <!--Content-->
-        <div class="p-4">
+        <!-- item descriptions -->
+        <p class="lead font-weight-bold">Description</p>
+        <p>{{ item.description }}</p>
+        <br>
 
-            <!-- product item badge -->
-            <div class="mb-3">
-                <a href="">
-                    <span class="badge badge-secondary">{{ item.get_category_display }}</span>
-                </a>
-            </div>
-
-            <!-- product item price -->
-            <p class="lead">
-            <!-- discount if it applies -->
-            {% if item.discounted_price %}
-                <span class="mr-1">
-                    <del>${{ item.price }}</del>
-                    <span>${{ item.discounted_price }}</span>
-                </span>
-            {% else %}
-                <span>${{ item.price }}</span>
-            {% endif %}</span>
-            </p>
-
-            <!-- item descriptions -->
-            <p class="lead font-weight-bold">Description</p>
-            <p>{{ item.description }}</p>
-            <br>
-
-            {% comment %} <form class="d-flex justify-content-left">
-            <!-- add to cart -->
-
-            </form> {% endcomment %}
+        <!-- add to cart -->
+        <form class="d-flex justify-content-left">
             <a href="{{ items.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">
                 Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
             </a>
-            {% comment %} 
-            <a href="{{ item.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
-                Remove from cart
-            </a> {% endcomment %}
-        </div>
-        <!--Content-->
-
-        </div>
-        <!--Grid column-->
-
+        </form>
+        {% comment %} 
+        <a href="{{ item.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
+            Remove from cart
+        </a> {% endcomment %}
     </div>
-    <!--Grid row-->
-
-    <hr>
-
-    <!-- bottom note -->
-    <!--Grid row-->
-    <div class="row d-flex justify-content-center wow fadeIn">
-        <!--Grid column-->
-        <div class="col-md-6 text-center">
-            <h4 class="my-4 h4">More Products</h4>
-            <p> TODO: list of more products </p>
-        </div>
     </div>
-    <!--Grid row-->
 </div>
-</main>
-<!--Main layout-->
+
+<hr> <!-- divider -->
+
+<!-- more products... -->
+<div class="row d-flex justify-content-center wow fadeIn">
+    <div class="col-md-6 text-center">
+        <h4 class="my-4 h4">More Products</h4>
+        <p> TODO: list of more products </p>
+    </div>
+</div>
+</div>
 {% endblock text %}

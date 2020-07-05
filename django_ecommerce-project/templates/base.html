@@ -55,16 +55,14 @@
                 <li class="nav-item {% if page == 'home' or extra_context.page == 'home' %} active {% endif %}">
                     <a class="nav-link transition" href="{% url 'home' %}">Home </a>
                 </li>
-                {% comment %} 
-                <li class="nav-item {% if page == 'shop' %} active {% endif %}">
+                <li class="nav-item {% block shop_active %} {% endblock shop_active %}">
                     <a class="nav-link transition" href="{% url 'item_list' %}">Shop </a>
                 </li> 
-                {% endcomment %}
 
                 {% if user.is_authenticated %}
                 <!-- if user is authenticated, this part is shown -->
                 <li class="nav-item">
-                    <a class="nav-link transition {% if page == 'cart' %} active {% endif %}" href="#">My Cart </a>
+                    <a class="nav-link transition {% block cart_active %} {% endblock cart_active %}" href="#">My Cart </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link transition {% block profile %} {% endblock profile %}" href="{% url 'profile' %}">My Proile </a>
@@ -119,7 +117,7 @@
     <div class="bottom_footer">
         <ul class="bottom">
             <li><a href="{% url 'home' %}">Home </a></li>
-            {% comment %} <li><a href="{% url 'item_list' %}">Shop </a></li> {% endcomment %}
+            <li><a href="{% url 'item_list' %}">Shop </a></li>
             {% if user.is_authenticated %}
             <li><a href="#">My Cart</a></li>
             <li><a href="{% url 'profile' %}">My Proile</a></li>

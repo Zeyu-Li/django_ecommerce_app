@@ -120,10 +120,6 @@ p {
     text-decoration: none;
 }
 
-.push {
-    height: 188px;
-}
-
 .top_footer {
     position: relative;
     max-width: 960px;
@@ -132,6 +128,10 @@ p {
     padding-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.divider { /* divides the top and bottom part of the footer */
+    border-top: 1px solid #383838;
 }
 
 .bottom_footer {
@@ -180,9 +180,9 @@ p {
     line-height: 2em;
 }
 
-
-.divider { /* divides the top and bottom part of the footer */
-    border-top: 1px solid #383838;
+/* shop */
+.item-description p {
+    padding-left: 0px;
 }
 
 /* addition styles */

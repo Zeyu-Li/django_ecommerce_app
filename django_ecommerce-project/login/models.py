@@ -7,6 +7,7 @@ class UserProfile(models.Model):
     ''' a model referencing a user, contains the user and the email '''
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # email must be unique
     email = models.EmailField(max_length=70, default='', unique=True)
 
     def __str__(self):

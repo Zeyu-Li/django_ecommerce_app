@@ -29,8 +29,9 @@ def register(request):
             # if it is valid, save and redirect to home
             form.save()
             
-            # TODO: Keep logged in after registered
-            return redirect('home')
+            # TODO: Keep logged in after registered?
+            extra_context = {'extra_context':{"page": "home", 'message':'True','message_title':'Register: ','message_text':'You have successfully created an account'}}
+            return render(request, 'shop/home.html', extra_context)
         else:
             # form is not valid and return form with error
             args = {'form': form}

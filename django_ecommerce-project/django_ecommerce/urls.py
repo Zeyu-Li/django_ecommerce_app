@@ -25,6 +25,14 @@ from login import views as user_views
 from shop import views as shop_views
 # TODO: https://www.youtube.com/watch?v=Xjty8q524Jo (14:00)
 
+# shop stuff
+from shop.views import ItemsView, ItemDetailView, add_to_cart
+
+
+# admin stuff
+admin.site.site_title = 'Database'
+admin.site.site_header = 'Red Star Django Admin'
+admin.site.index_title = 'Red Star Site Admin'
 
 urlpatterns = [
     # admin
@@ -52,6 +60,15 @@ urlpatterns = [
     path('reset_password/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='login/change_password.html'), name="password_reset_confirm"),
     # redirect to login
     path('reset_password/complete/', PasswordResetCompleteView.as_view(template_name='shop/home.html'), {'extra_context':{"page": "home", 'message':'True','message_title':'Change Password: ','message_text':'You have successfully changed your password'}}, name="password_reset_complete"),
+
+    # shop
+    path('shop/', ItemsView.as_view(), name='item_list'),
+    path('shop/product/<slug>/', ItemDetailView.as_view(), name='product'),
+    path('shop/checkout/', shop_views.checkout, name='checkout'),
+    path('shop/add-to-cart/', shop_views.add_to_cart, name='add-to-cart'),
+
+    # cart
+
 ]
 
 # errors
