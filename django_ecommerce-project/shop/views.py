@@ -40,6 +40,8 @@ def cart(request):
 class ItemsView(ListView):
     ''' displays all items in shop '''
     model = Item
+    # how many items per page
+    paginate_by = 12
     template_name = 'shop/shop.html'
 
 

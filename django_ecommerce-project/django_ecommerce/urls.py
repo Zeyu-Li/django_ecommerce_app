@@ -23,7 +23,7 @@ from django.contrib.auth.views import (
 # import both app modules
 from login import views as user_views
 from shop import views as shop_views
-# TODO: https://www.youtube.com/watch?v=ex6YznLrmSQ&list=PLLRM7ROnmA9F2vBXypzzplFjcHUaKWWP5&index=3 (0:00)
+# TODO: https://www.youtube.com/watch?v=dv9vKusSrDI&list=PLLRM7ROnmA9F2vBXypzzplFjcHUaKWWP5&index=4 (0:00)
 
 # shop stuff
 from shop.views import ItemsView, ItemDetailView, add_to_cart, remove_from_cart

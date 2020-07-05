@@ -45,6 +45,7 @@ if you are on Mac or Linux
 * [Django](https://www.djangoproject.com/)
 * [django-crispy-forms](https://django-crispy-forms.readthedocs.io/en/latest/)
 * [django-recaptcha](https://pypi.org/project/django-recaptcha/)
+* Pillow
 
 
 

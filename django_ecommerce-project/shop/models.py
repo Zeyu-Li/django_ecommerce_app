@@ -23,6 +23,7 @@ class Item(models.Model):
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=50)                            # category
     label = models.CharField(choices=LABEL_CHOICES, max_length=1, blank=True, null=True)            # label (optional)
     description = models.TextField(max_length=2500)                                                 # description of product
+    image = models.ImageField(upload_to='images', blank=True, null=True)                            # product image
     price = models.DecimalField(max_digits=6, decimal_places=2, default=10)                         # price of item
     discounted_price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)   # discounted price (optional)
     slug = models.SlugField()                                                                       # custom slag for item website
