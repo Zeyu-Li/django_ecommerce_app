@@ -4,22 +4,15 @@
 
 This is the successor of [django_ecommerse_app_deprecated](https://github.com/Zeyu-Li/django_ecommerse_app_deprecated)
 
-This is a Django Ecommerce App with login and a shopping cart. 
+This is a Django Ecommerce App with login and a shopping cart. To add new items, sign in as admin and go to Item -> + Item (top right). 
 
 
 
 ## How to use
 
-To start, install the required packages using the requirement.txt
-This step will require the [virtual ven module](https://docs.python.org/3/library/venv.html) (this might require admin access)
+To start, follow this tutorial: https://github.com/Zeyu-Li/django-tutorial#1-getting-started till **`pip install -r requirements.txt`**
 
-This can be done by entering in
 
-```powershell
-pip install -r requirements.txt
-```
-
-into PowerShell or terminal
 
 Afterwards, to move into the project enter
 
@@ -32,10 +25,37 @@ if you are on Windows
 OR
 
 ```shell
-start.sh # in terminal
+open.sh # in terminal
 ```
 
 if you are on Mac or Linux
+
+
+
+You then want to makemigrations and migrate with
+
+```shell
+py manage.py makemigrations #then
+py manage.py migrate
+```
+
+ Afterwards, you want an admin account so do
+
+```
+py manage.py createsuperuser
+```
+
+and follow the prompts
+
+
+
+Now you are set up and can do 
+
+```shell
+py manage.py runserver
+```
+
+and open the development server of http://127.0.0.1:8000/
 
 
 
@@ -45,7 +65,7 @@ if you are on Mac or Linux
 * [Django](https://www.djangoproject.com/)
 * [django-crispy-forms](https://django-crispy-forms.readthedocs.io/en/latest/)
 * [django-recaptcha](https://pypi.org/project/django-recaptcha/)
-* Pillow
+* [Pillow](https://pypi.org/project/Pillow/) -> for product images
 
 
 
