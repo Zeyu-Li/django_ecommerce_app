@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Profile {% endblock title %}
+
+{% block style %}
+<style>
+    /* body */
+    .container {
+        padding-bottom: 180px;
+    }
+    
+    /* text */
+    h1 {
+        padding-top: 50px;
+        padding-bottom: 20px;
+    }
+    h2 {
+        padding-top: 50px;
+        padding-bottom: 20px;
+        font-size: 3em;
+    }
+    
+    /* forms */
+    .btn {
+        margin-top: 20px;
+    }
+</style>
+{% endblock style %}
+
+{% block cart_active %} active {% endblock cart_active %}
+
+{% block banner %}
+
+<!-- alert for when you log out -->
+{% if extra_context.message %}
+<div class="alert alert-success alert-dismissible alert-notification" role="alert">
+    <strong>{{ extra_context.message_title }}</strong> {{ extra_context.message_text }}
+    <button type="button" class="close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
+{% endblock banner %}
+
+{% block text %}
+
+<!-- viewing user info -->
+<div class="container shadow-lg">
+    <h1>Profile: {{ user|title }}</h1>
+    <p>Email: {{ user.email }}</p>
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
+
+    <p><a href="{% url 'edit_profile' %}" class="btn btn-success">Edit profile</a></p>
+</div>
+
+{% endblock text %}
+
+{% block scripts %}
+<script>
+    // when document loads, slide alert down
+    $(document).ready(function() {
+        $(".alert").slideDown();
+    });
+
+    // once close is clicked, slide up the alert
+    $(".close").click(function(){
+        $(".alert").slideUp();
+    });
+</script>
+{% endblock scripts %}

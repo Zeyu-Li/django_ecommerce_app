@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from shop.models import Item, OrderItem, Order
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
@@ -29,6 +29,11 @@ def checkout(request):
     }
     return render(request, 'shop/checkout.html', context)
 
+@login_required
+def cart(request):
+    ''' user cart '''
+    return render(request, 'shop/cart.html')
+
 
 class ItemsView(ListView):
     ''' displays all items in shop '''
@@ -46,23 +51,28 @@ class ItemDetailView(DetailView):
 def add_to_cart(request, slug):
     ''' add item to cart '''
     item = get_object_or_404(Item, slug=slug)
-    order_item = OrderItem.items.create(item=item)
-    order_qs = Order.items.filter(user=request.user, ordered=False)
+    order_item = OrderItem.objects.create(item=item)
 
+    # get requested order
+    order_qs = Order.objects.filter(user=request.user, ordered=False)
+
+    # if order exists
     if order_qs.exists():
         order = order_qs[0]
         # checks if order is in the order
         if order.items.filter(item__slug=item.slug).exists():
+            # if user has item, add another one of that item
             order_item.quantity += 1
             order_item.save()
             return redirect("product", slug=slug)
         else:
+            # else add 1 to that order
             order.items.add(order_item)
             return redirect("product", slug=slug)
 
     else:
         ordered_date = timezone.now()
-        order = Order.items.create(
+        order = Order.objects.create(
             user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
     return redirect("product", slug=slug)

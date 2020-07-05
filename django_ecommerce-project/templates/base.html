@@ -62,7 +62,7 @@
                 {% if user.is_authenticated %}
                 <!-- if user is authenticated, this part is shown -->
                 <li class="nav-item">
-                    <a class="nav-link transition {% block cart_active %} {% endblock cart_active %}" href="#">My Cart </a>
+                    <a class="nav-link transition {% block cart_active %} {% endblock cart_active %}" href="{% url 'cart' %}">My Cart </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link transition {% block profile %} {% endblock profile %}" href="{% url 'profile' %}">My Proile </a>
@@ -119,7 +119,7 @@
             <li><a href="{% url 'home' %}">Home </a></li>
             <li><a href="{% url 'item_list' %}">Shop </a></li>
             {% if user.is_authenticated %}
-            <li><a href="#">My Cart</a></li>
+            <li><a href="{% url 'checkout' %}">My Cart</a></li>
             <li><a href="{% url 'profile' %}">My Proile</a></li>
             <li><a href="{% url 'logout' %}">Logout </a></li>
             {% else %}

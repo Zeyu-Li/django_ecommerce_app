@@ -64,8 +64,9 @@ urlpatterns = [
     # shop
     path('shop/', ItemsView.as_view(), name='item_list'),
     path('shop/product/<slug>/', ItemDetailView.as_view(), name='product'),
+    path('shop/add_to_cart/<slug>/', shop_views.add_to_cart, name='add_to_cart'),
+    path('cart/', shop_views.cart, name='cart'),
     path('shop/checkout/', shop_views.checkout, name='checkout'),
-    path('shop/add-to-cart/', shop_views.add_to_cart, name='add-to-cart'),
 
     # cart
 
