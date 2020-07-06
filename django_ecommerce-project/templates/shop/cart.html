@@ -7,13 +7,13 @@
 <style>
     /* body */
     .container {
-        padding-bottom: 180px;
+        padding-bottom: 30px;
     }
     
     /* text */
     h1 {
         padding-top: 50px;
-        padding-bottom: 20px;
+        padding-bottom: 25px;
     }
     h2 {
         padding-top: 50px;
@@ -24,6 +24,18 @@
     /* forms */
     .btn {
         margin-top: 20px;
+    }
+    .table > tbody > tr > .highrow {
+        border-top: 3px solid;
+    }
+
+    /* btn */
+    .checkout_btn, .continue_btn {
+        margin-top: 0px;
+    }
+
+    .continue_btn {
+        margin-right: 20px;
     }
 </style>
 {% endblock style %}
@@ -45,14 +57,51 @@
 
 {% block text %}
 
-<!-- viewing user info -->
+<!-- order summary -->
 <div class="container shadow-lg">
-    <h1>Profile: {{ user|title }}</h1>
-    <p>Email: {{ user.email }}</p>
-    <p>First Name: {{ user.first_name }}</p>
-    <p>Last Name: {{ user.last_name }}</p>
+<!-- title -->
+<h1>Order Summary:</h1>
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table table-condensed">
+            <!-- column names -->
+            <thead>
+                <tr>
+                    <td><strong>Item Name</strong></td>
+                    <td class="text-center"><strong>Item Price</strong></td>
+                    <td class="text-center"><strong>Quantity</strong></td>
+                    <td class="text-right"><strong>Item Total</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+            
+                <!-- items -->
+                {% for order_item in object.items.all %}
+                    <tr>
+                        <td>{{ order_item.item.title }}</td>
+                        <td class="text-center">{{ order_item.item.price }}</td>
+                        <td class="text-center">{{ order_item.quantity }}</td>
+                        <td class="text-right">${{ order_item.get_total_item_price }}</td>
+                    </tr>
+                {% endfor %}
 
-    <p><a href="{% url 'edit_profile' %}" class="btn btn-success">Edit profile</a></p>
+                <!-- totals -->
+                <tr>
+                    <td class="highrow"></td>
+                    <td class="highrow"></td>
+                    <td class="highrow text-center"><strong>Total</strong></td>
+                    <td class="highrow text-right"><strong>${{ object.get_final_price }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- buttons -->
+        <div>
+            <a href="{% url 'checkout' %}" class="btn btn-success float-right checkout_btn">Proceed to Checkout</a>
+            <a href="{% url 'item_list' %}" class="btn btn-primary float-right continue_btn">Continue Shopping</a>
+        </div>
+    </div>
+</div>
 </div>
 
 {% endblock text %}

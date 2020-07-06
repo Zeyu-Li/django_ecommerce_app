@@ -1,28 +1,21 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, View
 
 # from my models
 from shop.models import Item, OrderItem, Order
 
+# time zone for when the item was added
+from django.utils import timezone
 
-def item_list(request):
-    ''' list all item in shop '''
-    context = {
-        'items': Item.objects.all(),
-        'page': 'shop',
-    }
-    return render(request, 'shop/shop.html', context)
+# messages are like giving extra content
+from django.contrib import messages
 
-def product(request):
-    ''' product item page '''
-    context = {
-        'page': 'shop',
-    }
-    return render(request, 'shop/product.html', context)
+# get errors
+from django.core.exceptions import ObjectDoesNotExist
 
+
+# shop stuff
 @login_required
 def checkout(request):
     ''' user checkout '''
@@ -31,12 +24,8 @@ def checkout(request):
     }
     return render(request, 'shop/checkout.html', context)
 
-@login_required
-def cart(request):
-    ''' user cart '''
-    return render(request, 'shop/cart.html')
 
-
+# views
 class ItemsView(ListView):
     ''' displays all items in shop '''
     model = Item
@@ -51,6 +40,24 @@ class ItemDetailView(DetailView):
     template_name = 'shop/product.html'
 
 
+class OrderSummaryView(View):
+    ''' summarizes user's order '''
+    def get(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            context = {
+                'object': order,
+            }
+            return render(self.request, 'shop/cart.html', context)
+        except ObjectDoesNotExist:
+            extra_context = {'extra_context':{'message':'True','message_title':'Warning: ','message_text':'You have no items in your cart'}}
+            return render(request, 'login/home.html', extra_context)
+        except Exception:
+            extra_context = {'extra_context':{'message':'True','message_title':'Warning: ','message_text':'You have no items in your cart'}}
+            return render(request, 'login/home.html', extra_context)
+
+
+# add/remove from cart
 @login_required
 def add_to_cart(request, slug):
     ''' add item to cart '''
@@ -126,6 +133,7 @@ def remove_from_cart(request, slug):
         # add message the user doesn't have an order yet
         messages.warning(request, "You do note have an active order")
         return redirect("product", slug=slug)
+
 
 # home page
 def home(request):
