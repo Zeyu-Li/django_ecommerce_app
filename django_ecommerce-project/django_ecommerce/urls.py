@@ -24,12 +24,13 @@ from django.contrib.auth.views import (
 # import both app modules
 from login import views as user_views
 from shop import views as shop_views
-# TODO: https://www.youtube.com/watch?v=dv9vKusSrDI&list=PLLRM7ROnmA9F2vBXypzzplFjcHUaKWWP5&index=4 (20:00)
+# TODO: https://www.youtube.com/watch?v=UyML8q-8B1s&list=PLLRM7ROnmA9F2vBXypzzplFjcHUaKWWP5&index=5 (0:00)
 
 # shop stuff
 from shop.views import (
     ItemsView, ItemDetailView, OrderSummaryView, 
     add_to_cart, remove_from_cart,
+    add_single_to_cart, remove_single_from_cart, remove_all_from_cart,
 )
 
 # image view
@@ -78,6 +79,9 @@ urlpatterns = [
     # after shopping
     path('cart/', login_required(OrderSummaryView.as_view()), name='cart'),
     path('checkout/', shop_views.checkout, name='checkout'),
+    path('add_single_to_cart/<slug>/', add_single_to_cart, name='add_single_to_cart'),
+    path('remove_single_from_cart/<slug>/', remove_single_from_cart, name='remove_single_from_cart'),
+    path('remove_all_from_cart/<slug>/', remove_all_from_cart, name='remove_all_from_cart'),
 
     # cart
 

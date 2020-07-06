@@ -188,7 +188,7 @@ p {
 
 /* addition styles */
 .transition, .nav-link:hover, .navbar-brand:hover, .bottom>li>a:hover,
-.backtotop:hover, .bottom>li>a {
+.backtotop:hover, .bottom>li>a, .bi, .bi:hover {
     transition: .2s;
     -moz-transition: .2s;
     -webkit-transition: .2s;
