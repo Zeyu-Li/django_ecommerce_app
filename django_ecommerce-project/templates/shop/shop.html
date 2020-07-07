@@ -140,11 +140,16 @@
             <div class="card">
                 <!-- card image -->
                 <div class="view overlay preview_image_container">
-                    <img src="{{ item.image.url }}"
-                        class="card-img-top" alt="">
-                    <a href="{{ item.get_absolute_url }}" class="linker">
-                        <div class="mask"></div>
-                    </a>
+                    {% if item.image %}
+                        <img src="{{ item.image.url }}"
+                            class="card-img-top" alt="">
+                    {% else %}
+                        <img src="{% static 'login/images/idk.png' %}"
+                            class="card-img-top" alt="">
+                    {% endif %}
+                        <a href="{{ item.get_absolute_url }}" class="linker">
+                            <div class="mask"></div>
+                        </a>
                 </div>
 
                 <!-- card content -->

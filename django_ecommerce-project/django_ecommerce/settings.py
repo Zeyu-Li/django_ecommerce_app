@@ -36,16 +36,21 @@ ALLOWED_HOSTS = ['127.0.0.1']
 # two apps, one for login and another for the shop
 # + 2 modules; crispy forms and the recaptcha with register
 INSTALLED_APPS = [
-    'login',
-    'shop',
+    # installs
+    'django_countries',
+    'captcha',
+    'crispy_forms',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'captcha',
-    'crispy_forms',
+
+    # apps
+    'login',
+    'shop',
 ]
 
 MIDDLEWARE = [

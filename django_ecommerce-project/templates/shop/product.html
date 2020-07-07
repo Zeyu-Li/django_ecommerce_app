@@ -61,7 +61,11 @@
 
     <!-- product image -->
     <div class="col-md-6 mb-4 product_image">
+    {% if item.image %}
         <img src="{{ item.image.url }}" class="img-fluid" alt="">
+    {% else %}
+        <img src="{% static 'login/images/idk.png' %}" class="img-fluid" alt="" style='max-height: 300px;'>
+    {% endif %}
     </div>
 
     <div class="col-md-6 mb-4">

@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.shortcuts import reverse
 
+# country
+from django_countries.fields import CountryField
+
 CATEGORY_CHOICES = (
     ('Tech', 'Technology'),
     ('Access', 'Accessories'),
@@ -76,6 +79,8 @@ class Order(models.Model):
     ordered_date = models.DateTimeField()                                   # order date
     ordered = models.BooleanField(default=False)                            # is order
 
+    billing_address = models.ForeignKey('BillingAddress', on_delete=models.SET_NULL, blank=True, null=True)                            # billing address
+
     def __str__(self):
         return self.user.username
 
@@ -86,3 +91,15 @@ class Order(models.Model):
             total += order_item.get_total_item_price()
 
         return total
+
+
+class BillingAddress(models.Model):
+    ''' handling billing address '''
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)     # user
+    street_address = models.CharField(max_length=400)
+    apartment_address = models.CharField(max_length=400)
+    country = CountryField(multiple=False)
+    zip_address = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.user.username

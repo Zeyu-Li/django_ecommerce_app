@@ -59,12 +59,21 @@ and open the development server of http://127.0.0.1:8000/
 
 
 
+no such column error?
+
+```shell
+python manage.py migrate --run-syncdb
+```
+
+
+
 ## Dependencies/Modules
 
 * [virtualenv](https://docs.python.org/3/tutorial/venv.html)
 * [Django](https://www.djangoproject.com/)
 * [django-crispy-forms](https://django-crispy-forms.readthedocs.io/en/latest/)
 * [django-recaptcha](https://pypi.org/project/django-recaptcha/)
+* [django-countries](https://github.com/SmileyChris/django-countries)
 * [Pillow](https://pypi.org/project/Pillow/) -> for product images
 
 

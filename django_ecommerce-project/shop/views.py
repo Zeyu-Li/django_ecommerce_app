@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, View
 
 # from my models
-from shop.models import Item, OrderItem, Order
+from shop.models import Item, OrderItem, Order, BillingAddress
 
 # time zone for when the item was added
 from django.utils import timezone
@@ -14,15 +14,58 @@ from django.contrib import messages
 # get errors
 from django.core.exceptions import ObjectDoesNotExist
 
+# get forms
+from .forms import CheckoutForm
+
 
 # shop stuff
-@login_required
-def checkout(request):
+class CheckoutView(View):
     ''' user checkout '''
-    context = {
-        'page': 'shop'
-    }
-    return render(request, 'shop/checkout.html', context)
+    def get(self, *args, **kwargs):
+        # form
+        form = CheckoutForm()
+        context = {
+            'page': 'shop',
+            'form': form,
+        }
+        return render(self.request, 'shop/checkout.html', context)
+
+    def post(self, *args, **kwargs):
+        ''' post data '''
+        form = CheckoutForm(self.request.POST or None)
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            if form.is_valid():
+                # gets cleaned data
+                street_address = form.cleaned_data.get('street_address')
+                apartment_address = form.cleaned_data.get('apartment_address')
+                country = form.cleaned_data.get('country')
+                zip_address = form.cleaned_data.get('zip_address')
+                # TODO: Later
+                # billing_address = form.cleaned_data.get('billing_address')
+                # save_info = form.cleaned_data.get('save_info')
+                payment_options = form.cleaned_data.get('payment_options')
+
+                billing_address = BillingAddress(
+                    user=self.request.user,
+                    street_address=street_address,
+                    apartment_address=apartment_address,
+                    country=country,
+                    zip_address=zip_address,
+                )
+                billing_address.save()
+                order.billing_address = billing_address
+                order.save()
+
+                # TODO: redirect to payment
+                return redirect('checkout')
+            else:
+                # form is not valid and return form with error
+                args = {'form': form}
+                return render(self.request, 'shop/checkout.html', args)
+        except ObjectDoesNotExist:
+            extra_context = {'extra_context':{'message':'True','message_title':'Warning: ','message_text':'You do not have an active order'}}
+            return render(self.request, 'shop/home.html', extra_context)
 
 
 # views

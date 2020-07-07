@@ -40,7 +40,8 @@
 <div class="swiper-container">
     <div class="swiper-wrapper">
         <div class="swiper-slide"><img src="{% static 'login/images/opening1.svg' %}" alt="Grand Opening" title="Grand Opening of Red Star"></div>
-        <div class="swiper-slide"><a href="#"><img src="{% static 'login/images/opening2.svg' %}" alt="Greatest Deals in the country" title="Greatest Deals in the Country"></a></div>
+        <div class="swiper-slide"><a href="{% url 'item_list' %}"><img src="{% static 'login/images/opening2.svg' %}" alt="Greatest Deals in the country" title="Greatest Deals in the Country"></a></div>
+        <div class="swiper-slide"><a href="{% url 'login' %}" class='overflow: hiddent'><img src="{% static 'login/images/opening3.svg' %}" alt="Login in today for free" title="Login Now"></a></div>
         {% comment %} <div class="swiper-slide"><a href="{% url 'register' %}"><img src="{% static 'login/images/opening3.svg' %}" alt="Sign up today" title="Sign Up"></a></div> {% endcomment %}
     </div>
     <!-- Add Pagination -->
