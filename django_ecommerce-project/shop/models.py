@@ -81,6 +81,8 @@ class Order(models.Model):
 
     billing_address = models.ForeignKey('BillingAddress', on_delete=models.SET_NULL, blank=True, null=True)                            # billing address
 
+    payment = models.ForeignKey('Payment', on_delete=models.SET_NULL, blank=True, null=True)                                            # pay
+
     def __str__(self):
         return self.user.username
 
@@ -100,6 +102,17 @@ class BillingAddress(models.Model):
     apartment_address = models.CharField(max_length=400)
     country = CountryField(multiple=False)
     zip_address = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.user.username
+
+
+class Payment(models.Model):
+    ''' for when a customer pays '''
+    stripe_charge_id = models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)     # user
+    amount = models.DecimalField(max_digits=6, decimal_places=2)
+    timestamp = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.user.username

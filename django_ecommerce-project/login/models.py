@@ -6,9 +6,9 @@ from django.db.models.signals import post_save
 class UserProfile(models.Model):
     ''' a model referencing a user, contains the user and the email '''
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     # email must be unique
-    email = models.EmailField(max_length=70, default='', unique=True)
+    email = models.EmailField(max_length=70, default='') # unfortunately unique is not an option
 
     def __str__(self):
         return self.user.username

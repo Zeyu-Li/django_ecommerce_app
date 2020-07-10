@@ -67,6 +67,22 @@ python manage.py migrate --run-syncdb
 
 
 
+## Demo
+
+<img src="demo.gif" alt="demo" style="zoom:200%;" />
+
+^ sorry about the bad quality, size restrictions :(
+
+
+
+Adding a new item
+
+![snap1](snap1.png)
+
+Purchase
+
+![snap2](snap2.png)
+
 ## Dependencies/Modules
 
 * [virtualenv](https://docs.python.org/3/tutorial/venv.html)
@@ -75,6 +91,7 @@ python manage.py migrate --run-syncdb
 * [django-recaptcha](https://pypi.org/project/django-recaptcha/)
 * [django-countries](https://github.com/SmileyChris/django-countries)
 * [Pillow](https://pypi.org/project/Pillow/) -> for product images
+* [stripe](https://pypi.org/project/stripe/) - for purchasing
 
 
 

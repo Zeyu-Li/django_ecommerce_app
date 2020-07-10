@@ -17,7 +17,7 @@ def register(request):
     # redirect user to home if user is already signed in
     if request.user.is_authenticated:
         extra_context = {'extra_context':{'message':'True','message_title':'Warning: ','message_text':'You are already logged in'}}
-        return render(request, 'login/home.html', extra_context)
+        return render(request, 'shop/home.html', extra_context)
 
     # if request is post
     if request.method == 'POST':

@@ -14,6 +14,4 @@ class CheckoutForm(forms.Form):
     zip_address = forms.CharField(max_length=40)
 
     # options
-    billing_address = forms.BooleanField(widget=forms.CheckboxInput(), required=False)
-    save_info = forms.BooleanField(widget=forms.CheckboxInput(), required=False)
     payment_options = forms.ChoiceField(widget=forms.RadioSelect(), choices=PAYMENT_CHOICES)

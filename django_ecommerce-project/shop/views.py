@@ -2,8 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, View
 
+# get settings
+from django.conf import settings
+
 # from my models
-from shop.models import Item, OrderItem, Order, BillingAddress
+from shop.models import Item, OrderItem, Order, BillingAddress, Payment
 
 # time zone for when the item was added
 from django.utils import timezone
@@ -16,6 +19,10 @@ from django.core.exceptions import ObjectDoesNotExist
 
 # get forms
 from .forms import CheckoutForm
+
+# stripe
+import stripe
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 # shop stuff
@@ -58,7 +65,7 @@ class CheckoutView(View):
                 order.save()
 
                 # TODO: redirect to payment
-                return redirect('checkout')
+                return redirect('payment', payment_options='stripe')
             else:
                 # form is not valid and return form with error
                 args = {'form': form}
@@ -66,6 +73,91 @@ class CheckoutView(View):
         except ObjectDoesNotExist:
             extra_context = {'extra_context':{'message':'True','message_title':'Warning: ','message_text':'You do not have an active order'}}
             return render(self.request, 'shop/home.html', extra_context)
+
+
+class PaymentView(View):
+    ''' view for actually paying '''
+    def get(self, *args, **kwargs):
+        order = Order.objects.get(user=self.request.user, ordered=False)
+
+        context = {
+            'object': order
+        }
+        return render(self.request, "shop/payment.html", context)
+
+    def post(self, *args, **kwargs):
+        ''' what happens when payment view is posted '''
+        token = self.request.POST.get('stripeToken')
+        order = Order.objects.get(user=self.request.user, ordered=False)
+
+        amount = int(order.get_final_price() * 100)
+
+        try:
+            charge = stripe.Charge.create(
+                amount=amount,  # cents
+                currency="usd",
+                source=token
+            )
+
+            # create the payment
+            payment = Payment()
+            payment.stripe_charge_id = charge['id']
+            payment.user = self.request.user
+            payment.amount = int(order.get_final_price())
+            payment.save()
+
+            # assign the payment to the order
+            order_items = order.items.all()
+            order_items.update(ordered=True)
+            for item in order_items:
+                item.save()
+
+            order.ordered = True
+            order.payment = payment
+            order.save()
+
+            messages.success(self.request, "Your order was successful!")
+            return redirect("home")
+
+        except stripe.error.CardError as e:
+            body = e.json_body
+        #     err = body.get('error', {})
+        #     messages.warning(self.request, f"{err.get('message')}")
+        #     return redirect("home")
+
+        # except stripe.error.RateLimitError as e:
+        #     # Too many requests made to the API too quickly
+        #     messages.warning(self.request, "Rate limit error")
+        #     return redirect("home")
+
+        # except stripe.error.InvalidRequestError as e:
+        #     # Invalid parameters were supplied to Stripe's API
+        #     messages.warning(self.request, "Invalid parameters")
+        #     return redirect("home")
+
+        # except stripe.error.AuthenticationError as e:
+        #     # Authentication with Stripe's API failed
+        #     # (maybe you changed API keys recently)
+        #     messages.warning(self.request, "Not authenticated")
+        #     return redirect("home")
+
+        # except stripe.error.APIConnectionError as e:
+        #     # Network communication with Stripe failed
+        #     messages.warning(self.request, "Network error")
+        #     return redirect("home")
+
+        # except stripe.error.StripeError as e:
+        #     # Display a very generic error to the user, and maybe send
+        #     # yourself an email
+        #     messages.warning(
+        #         self.request, "Something went wrong. You were not charged. Please try again.")
+        #     return redirect("home")
+
+        # except Exception as e:
+        #     # send an email to ourselves
+        #     messages.warning(
+        #         self.request, "A serious error occurred. We have been notified.")
+        #     return redirect("home")
 
 
 # views

@@ -11,6 +11,7 @@
     /* body */
     .main {
         margin-top: 5vh;
+        margin-bottom: 2vh;
     }
 
     /* carousel */
@@ -34,6 +35,19 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
+{% endif %}
+
+<!-- payment message -->
+{% if messages %}
+
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible alert-notification" role="alert">
+    {{ message }}
+    <button type="button" class="close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
 {% endif %}
 
 <!-- carousel -->
@@ -65,9 +79,9 @@ Here at Red Star, we have dedicated our products to be cheap and reliable.
 
 <!-- TODO: some products from the shop -->
 <div class="products">
-    <h2>Products</h2>
-
-    
+    <h2>Shop</h2>
+    <br>
+    <p>Start buy things now <a href="{% url 'item_list' %}">here</a></p>
 </div>
 
 {% endblock text %}

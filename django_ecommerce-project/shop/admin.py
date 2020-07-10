@@ -1,6 +1,6 @@
 from django.contrib import admin
 from login.models import UserProfile
-from shop.models import Item, OrderItem, Order
+from shop.models import Item, OrderItem, Order, Payment
 
 
 class UserProfileAdmin(admin.ModelAdmin):
@@ -19,3 +19,4 @@ admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Item)
 admin.site.register(OrderItem)
 admin.site.register(Order)
+admin.site.register(Payment)
