@@ -90,7 +90,7 @@ Purchase
 * [django-crispy-forms](https://django-crispy-forms.readthedocs.io/en/latest/)
 * [django-recaptcha](https://pypi.org/project/django-recaptcha/)
 * [django-countries](https://github.com/SmileyChris/django-countries)
-* [Pillow](https://pypi.org/project/Pillow/) -> for product images
+* [Pillow](https://pypi.org/project/Pillow/) - for product images
 * [stripe](https://pypi.org/project/stripe/) - for purchasing
 
 
